@@ -1,0 +1,19 @@
+{
+  "name": "assertsharp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./built/assert.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  },
+  "scripts": {
+    "test": "node_modules\\.bin\\mocha built/*.test.js"
+  },
+  "private": true,
+  "keywords": [
+    "assert"
+  ],
+  "author": "BrunoLM",
+  "license": "MIT"
+}
