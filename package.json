@@ -1,6 +1,6 @@
 {
   "name": "assertsharp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Assert methods based on .NET Assert class.",
   "main": "./built/assert.js",
   "dependencies": {},
