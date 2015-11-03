@@ -10,7 +10,10 @@
   "scripts": {
     "test": "node_modules\\.bin\\mocha built/*.test.js"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunolm/AssertSharp.git"
+  },
   "keywords": [
     "assert"
   ],
