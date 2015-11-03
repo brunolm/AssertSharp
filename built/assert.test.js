@@ -265,7 +265,7 @@ describe("Assert.IsNotInstanceOfType", function () {
 });
 describe("Assert.IsNotNull", function () {
     it("Value not null should pass", function () {
-        assert_1.default.IsNotNull(true);
+        assert_1.default.IsNotNull(1);
     });
     it("Value null should throw", function () {
         var result = true;
@@ -299,7 +299,7 @@ describe("Assert.IsNull", function () {
     it("Value not null should throw", function () {
         var result = true;
         try {
-            assert_1.default.IsNull(true);
+            assert_1.default.IsNull(1);
             result = false;
         }
         catch (ex) { }

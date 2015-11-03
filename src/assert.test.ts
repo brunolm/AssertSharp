@@ -407,7 +407,7 @@ describe("Assert.IsNotNull", () =>
 {
     it("Value not null should pass", () =>
     {
-        Assert.IsNotNull(true);
+        Assert.IsNotNull(1);
     });
     
     it("Value null should throw", () =>
@@ -461,7 +461,7 @@ describe("Assert.IsNull", () =>
         
         try
         {
-            Assert.IsNull(true);
+            Assert.IsNull(1);
             result = false;
         }
         catch (ex) { }

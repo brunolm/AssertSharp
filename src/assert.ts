@@ -102,7 +102,7 @@ export default class Assert
         }
     }
 
-    public static IsNotNull(actual: boolean, message: string = ""): void
+    public static IsNotNull(actual: any, message: string = ""): void
     {
         if (actual === null)
         {
@@ -110,7 +110,7 @@ export default class Assert
         }
     }
 
-    public static IsNull(actual: boolean, message: string = ""): void
+    public static IsNull(actual: any, message: string = ""): void
     {
         if (actual !== null)
         {
