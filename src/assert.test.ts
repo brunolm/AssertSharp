@@ -267,12 +267,325 @@ describe("Assert.Fail", () =>
 	});
 });
 
-/*
-IsFalse
-IsInstanceOfType
-IsNotInstanceOfType
-IsNotNull
-IsNull
-IsTrue
-Throws
-*/
+describe("Assert.IsFalse", () =>
+{
+	it("Value false should pass", () =>
+	{
+		Assert.IsFalse(false);
+	});
+	
+	it("Value true should throw", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsFalse(true);
+			result = false;
+		}
+		catch (ex) { }
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+	
+	it("Value true should throw with error message", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsFalse(true, failMessage);
+			result = false;
+		}
+		catch (ex)
+		{
+			checkErrorMessage(ex.message);
+		}
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+});
+
+
+describe("Assert.IsInstanceOfType", () =>
+{
+	it("Value same type should pass", () =>
+	{
+		Assert.IsInstanceOfType(new Date(), Date);
+	});
+	
+	it("Value different type should throw", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsInstanceOfType(false, Date);
+			result = false;
+		}
+		catch (ex) { }
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+	
+	it("Value different type should throw with error message", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsInstanceOfType(false, Date, failMessage);
+			result = false;
+		}
+		catch (ex)
+		{
+			checkErrorMessage(ex.message);
+		}
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+});
+
+describe("Assert.IsNotInstanceOfType", () =>
+{
+	it("Value different type should pass", () =>
+	{
+		Assert.IsNotInstanceOfType(true, Date);
+	});
+	
+	it("Value same type should throw", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsNotInstanceOfType(new Date(), Date);
+			result = false;
+		}
+		catch (ex) { }
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+	
+	it("Value same type should throw with error message", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsNotInstanceOfType(new Date(), Date, failMessage);
+			result = false;
+		}
+		catch (ex)
+		{
+			checkErrorMessage(ex.message);
+		}
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+});
+
+describe("Assert.IsNotNull", () =>
+{
+	it("Value not null should pass", () =>
+	{
+		Assert.IsNotNull(true);
+	});
+	
+	it("Value null should throw", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsNotNull(null);
+			result = false;
+		}
+		catch (ex) { }
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+	
+	it("Value null should throw with error message", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsNotNull(null, failMessage);
+			result = false;
+		}
+		catch (ex)
+		{
+			checkErrorMessage(ex.message);
+		}
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+});
+
+describe("Assert.IsNull", () =>
+{
+	it("Value null should pass", () =>
+	{
+		Assert.IsNull(null);
+	});
+	
+	it("Value not null should throw", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsNull(true);
+			result = false;
+		}
+		catch (ex) { }
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+	
+	it("Value not null should throw with error message", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsNull(true, failMessage);
+			result = false;
+		}
+		catch (ex)
+		{
+			checkErrorMessage(ex.message);
+		}
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+});
+
+describe("Assert.IsTrue", () =>
+{
+	it("Value true should pass", () =>
+	{
+		Assert.IsTrue(true);
+	});
+	
+	it("Value false should throw", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsTrue(false);
+			result = false;
+		}
+		catch (ex) { }
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+	
+	it("Value false should throw with error message", () =>
+	{
+		var result = true;
+		
+		try
+		{
+			Assert.IsTrue(false, failMessage);
+			result = false;
+		}
+		catch (ex)
+		{
+			checkErrorMessage(ex.message);
+		}
+		
+		if (!result)
+		{
+			throw new Error("Test failed.");
+		}
+	});
+});
+
+describe("Assert.Throws", () =>
+{
+	it("Throws should throw", () =>
+	{
+		var pass = false;
+		try
+		{
+			Assert.Throws(() => { throw new Error(failMessage); });
+			pass = true;
+		}
+		catch (ex) { }
+		
+		if (!pass)
+			throw new Error("Test failed.");
+	});
+	
+	it("Throws without throwing should fail", () =>
+	{
+		var pass = false;
+        
+		try
+		{
+			Assert.Throws(() => { });
+		}
+		catch (ex)
+		{
+			pass = true;
+		}
+        
+		if (!pass)
+			throw new Error("Test failed.");
+	});
+    
+	it("Fail with message should throw with error message", () =>
+	{
+		var pass = false;
+
+		try
+		{
+			Assert.Throws(() => { }, failMessage);
+		}
+		catch (ex)
+		{
+			checkErrorMessage(ex.message);
+			pass = true;
+		}
+        
+		if (!pass)
+			throw new Error("Test failed.");
+	});
+});

@@ -176,13 +176,213 @@ describe("Assert.Fail", function () {
         }
     });
 });
-/*
-IsFalse
-IsInstanceOfType
-IsNotInstanceOfType
-IsNotNull
-IsNull
-IsTrue
-Throws
-*/ 
+describe("Assert.IsFalse", function () {
+    it("Value false should pass", function () {
+        assert_1.default.IsFalse(false);
+    });
+    it("Value true should throw", function () {
+        var result = true;
+        try {
+            assert_1.default.IsFalse(true);
+            result = false;
+        }
+        catch (ex) { }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+    it("Value true should throw with error message", function () {
+        var result = true;
+        try {
+            assert_1.default.IsFalse(true, failMessage);
+            result = false;
+        }
+        catch (ex) {
+            checkErrorMessage(ex.message);
+        }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+});
+describe("Assert.IsInstanceOfType", function () {
+    it("Value same type should pass", function () {
+        assert_1.default.IsInstanceOfType(new Date(), Date);
+    });
+    it("Value different type should throw", function () {
+        var result = true;
+        try {
+            assert_1.default.IsInstanceOfType(false, Date);
+            result = false;
+        }
+        catch (ex) { }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+    it("Value different type should throw with error message", function () {
+        var result = true;
+        try {
+            assert_1.default.IsInstanceOfType(false, Date, failMessage);
+            result = false;
+        }
+        catch (ex) {
+            checkErrorMessage(ex.message);
+        }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+});
+describe("Assert.IsNotInstanceOfType", function () {
+    it("Value different type should pass", function () {
+        assert_1.default.IsNotInstanceOfType(true, Date);
+    });
+    it("Value same type should throw", function () {
+        var result = true;
+        try {
+            assert_1.default.IsNotInstanceOfType(new Date(), Date);
+            result = false;
+        }
+        catch (ex) { }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+    it("Value same type should throw with error message", function () {
+        var result = true;
+        try {
+            assert_1.default.IsNotInstanceOfType(new Date(), Date, failMessage);
+            result = false;
+        }
+        catch (ex) {
+            checkErrorMessage(ex.message);
+        }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+});
+describe("Assert.IsNotNull", function () {
+    it("Value not null should pass", function () {
+        assert_1.default.IsNotNull(true);
+    });
+    it("Value null should throw", function () {
+        var result = true;
+        try {
+            assert_1.default.IsNotNull(null);
+            result = false;
+        }
+        catch (ex) { }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+    it("Value null should throw with error message", function () {
+        var result = true;
+        try {
+            assert_1.default.IsNotNull(null, failMessage);
+            result = false;
+        }
+        catch (ex) {
+            checkErrorMessage(ex.message);
+        }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+});
+describe("Assert.IsNull", function () {
+    it("Value null should pass", function () {
+        assert_1.default.IsNull(null);
+    });
+    it("Value not null should throw", function () {
+        var result = true;
+        try {
+            assert_1.default.IsNull(true);
+            result = false;
+        }
+        catch (ex) { }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+    it("Value not null should throw with error message", function () {
+        var result = true;
+        try {
+            assert_1.default.IsNull(true, failMessage);
+            result = false;
+        }
+        catch (ex) {
+            checkErrorMessage(ex.message);
+        }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+});
+describe("Assert.IsTrue", function () {
+    it("Value true should pass", function () {
+        assert_1.default.IsTrue(true);
+    });
+    it("Value false should throw", function () {
+        var result = true;
+        try {
+            assert_1.default.IsTrue(false);
+            result = false;
+        }
+        catch (ex) { }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+    it("Value false should throw with error message", function () {
+        var result = true;
+        try {
+            assert_1.default.IsTrue(false, failMessage);
+            result = false;
+        }
+        catch (ex) {
+            checkErrorMessage(ex.message);
+        }
+        if (!result) {
+            throw new Error("Test failed.");
+        }
+    });
+});
+describe("Assert.Throws", function () {
+    it("Throws should throw", function () {
+        var pass = false;
+        try {
+            assert_1.default.Throws(function () { throw new Error(failMessage); });
+            pass = true;
+        }
+        catch (ex) { }
+        if (!pass)
+            throw new Error("Test failed.");
+    });
+    it("Throws without throwing should fail", function () {
+        var pass = false;
+        try {
+            assert_1.default.Throws(function () { });
+        }
+        catch (ex) {
+            pass = true;
+        }
+        if (!pass)
+            throw new Error("Test failed.");
+    });
+    it("Fail with message should throw with error message", function () {
+        var pass = false;
+        try {
+            assert_1.default.Throws(function () { }, failMessage);
+        }
+        catch (ex) {
+            checkErrorMessage(ex.message);
+            pass = true;
+        }
+        if (!pass)
+            throw new Error("Test failed.");
+    });
+});
 //# sourceMappingURL=assert.test.js.map
